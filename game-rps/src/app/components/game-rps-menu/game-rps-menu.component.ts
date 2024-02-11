@@ -14,12 +14,12 @@ import { GameType } from '../../types/game-type.type';
         <header>
             <h1>Rock Paper Scissor Game</h1>
             <section *ngIf="!menu.inGameProcess">
-                <button (click)="onClickPlay('/selection', 'normal')">Play Normal!</button>
-                <button (click)="onClickPlay('/selection', 'sheldon')">Play with Sheldon!</button>
+                <button class="btn-inline" (click)="onClickPlay('/selection', 'normal')">Play Normal!</button>
+                <button class="btn-inline" (click)="onClickPlay('/selection', 'sheldon')">Play with Sheldon!</button>
             </section>
 
             <section *ngIf="menu.inGameProcess">
-                <button (click)="onClickReset()">Reset</button>
+                <button class="btn-inline" (click)="onClickReset()">Reset</button>
             </section>
         </header>
     `,

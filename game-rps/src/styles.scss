@@ -22,7 +22,7 @@ h1, h2 {
     color: $color-primary;
 }
 
-button {
+.btn-inline {
     background-color: transparent;
     color: $color-primary;
     padding: 8px;
@@ -32,7 +32,7 @@ button {
     font-weight: 400;
 }
 
-button:hover {
+.btn-inline:hover {
     border:  2px solid $color-primary;
     font-weight: bold;
 }

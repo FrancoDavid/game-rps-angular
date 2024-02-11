@@ -2,15 +2,20 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { GameType } from '../../types/game-type.type';
+import { GameRpsSelectorComponent } from '../../components/game-rps-selector/game-rps-selector.component';
 
 @Component({
     selector: 'game-rps-selector-page',
     standalone: true,
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+
+        GameRpsSelectorComponent
     ],
-    template: `<p>game-rps-selector-page works!</p>`,
+    template: `
+        <game-rps-selector></game-rps-selector>
+    `,
     styleUrl: './game-rps-selector-page.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
