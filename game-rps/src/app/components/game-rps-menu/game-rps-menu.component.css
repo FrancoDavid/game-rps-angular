@@ -1,0 +1,12 @@
+header {
+  margin: 10px auto;
+  padding: 6px;
+  text-align: center;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px auto;
+}

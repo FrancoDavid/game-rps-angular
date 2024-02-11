@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { GameRpsMenuPageComponent } from './pages/game-rps-menu-page/game-rps-menu-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [GameRpsMenuPageComponent],
   template: `
-    <router-outlet />
+    <game-rps-menu-page>
+    </game-rps-menu-page>
   `,
   styles: [],
 })
