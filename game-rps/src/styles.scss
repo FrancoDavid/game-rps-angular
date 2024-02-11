@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+$color-main: #3555E6;
+$color-primary: white;
+$color-secondary: #374fb9;
+$color-ternary: rgb(58, 56, 56);
+
+* , html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $color-main;
+    font-size: 62.5%;
+}
+
