@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { GameType } from '../../types/game-type.type';
 import { GameRpsSelectorComponent } from '../../components/game-rps-selector/game-rps-selector.component';
+import { GameRpsScoreComponent } from '../../components/game-rps-score/game-rps-score.component';
 
 @Component({
     selector: 'game-rps-selector-page',
@@ -11,9 +12,15 @@ import { GameRpsSelectorComponent } from '../../components/game-rps-selector/gam
         CommonModule,
         RouterModule,
 
-        GameRpsSelectorComponent
+        GameRpsSelectorComponent,
+        GameRpsScoreComponent
     ],
     template: `
+
+        <game-rps-score
+            [options]="gameConfig.options">
+        </game-rps-score>
+
         <aside class="game-config-container" *ngIf="gameConfig.mode === 'normal'">
             <section class="selector-contain--center">
                 <game-rps-selector [mode]="gameConfig.options[0]"></game-rps-selector>

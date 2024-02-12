@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { GameRpsMenuComponent } from '../../components/game-rps-menu/game-rps-menu.component';
 import { RouterOutlet } from '@angular/router';
+import { GameRpsScoreComponent } from '../../components/game-rps-score/game-rps-score.component';
 
 @Component({
     selector: 'game-rps-menu-page',
@@ -9,7 +10,8 @@ import { RouterOutlet } from '@angular/router';
     imports: [
         CommonModule,
         RouterOutlet,
-        GameRpsMenuComponent
+        GameRpsMenuComponent,
+        
     ],
     template: `
         <game-rps-menu></game-rps-menu>
