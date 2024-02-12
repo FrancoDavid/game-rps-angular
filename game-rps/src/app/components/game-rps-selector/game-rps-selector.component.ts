@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GameOption } from '../../types/game-option.type';
 
 @Component({
     selector: 'game-rps-selector',
@@ -22,18 +23,23 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 })
 export class GameRpsSelectorComponent implements OnInit {
 
-    @Input() mode: 'rock' | 'paper' | 'scissor' | null;
+    @Input() mode: GameOption | null;
+    @Output() eventClick: EventEmitter<GameOption | null>;
+
     public button: {
         style: string,
         src: string
     } | null;
 
     constructor() {
-        this.mode =  null;
+        this.mode = null
         this.button = null;
+
+        this.eventClick = new EventEmitter();
     }
 
     ngOnInit(): void {
+
         this.button = {
             style: this._setStyle(this.mode),
             src: this._setSrc(this.mode),
@@ -67,6 +73,6 @@ export class GameRpsSelectorComponent implements OnInit {
     }
 
     public onClick()  {
-        console.log('onClick');
+        this.eventClick.emit(this.mode)
     }
 }
