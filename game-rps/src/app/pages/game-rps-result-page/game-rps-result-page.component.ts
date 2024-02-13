@@ -1,15 +1,18 @@
+import { GameResultTextPipe } from './../../pipes/game-result-text.pipe';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { GameRpsSelectorComponent } from '../../components/game-rps-selector/game-rps-selector.component';
 import { ActivatedRoute } from '@angular/router';
 import { GameOption } from '../../types/game-option.type';
+import { GameRpsService } from '../../services/game-rps.service';
 
 @Component({
     selector: 'game-rps-result-page',
     standalone: true,
     imports: [
         CommonModule,
-        GameRpsSelectorComponent
+        GameRpsSelectorComponent,
+        GameResultTextPipe
     ],
     template: `
         <section class="result-container"> 
@@ -17,8 +20,7 @@ import { GameOption } from '../../types/game-option.type';
                 <game-rps-selector [mode]="result.optionChooser"></game-rps-selector>
             </aside>
             <aside>
-                <h2 *ngIf="result.isWinner">You win</h2>
-                <h2 *ngIf="!result.isWinner">You lose</h2>
+                <h2>{{result.isWinner | gameResultText}}</h2>
                 <button>Next Round</button>
             </aside>
             <aside>
@@ -34,17 +36,16 @@ export class GameRpsResultPageComponent implements OnInit {
     public result: {
         optionChooser: GameOption | null,
         optionHouse: GameOption | null,
-        isWinner: boolean
+        isWinner: number
     };
 
-    private OPTIONS: Array<GameOption> = ['paper', 'rock', 'scissor'];
 
-
-    constructor(private _activeRouter: ActivatedRoute) {
+    constructor(private _activeRouter: ActivatedRoute,
+                private _gameService: GameRpsService) {
         this.result = {
             optionChooser: null,
             optionHouse: null,
-            isWinner: false
+            isWinner: 0
         };
     }
  
@@ -52,35 +53,15 @@ export class GameRpsResultPageComponent implements OnInit {
     ngOnInit(): void {
 
         const optionChooser = this._activeRouter.snapshot.paramMap.get('option') as GameOption | null;
-        const optionHouse = this.OPTIONS[Math.floor(Math.random() * 3)];
+        const optionHouse = this._gameService.calculateChoicePlayerAuto();
 
         this.result = {
             optionChooser,
             optionHouse,
-            isWinner: this._verifyWinner(optionHouse, optionChooser)
+            isWinner: this._gameService.verifyGameWinner(optionChooser, optionHouse)
         };
 
         console.log(this.result);
     }
-
-    private _verifyWinner(optionHouse: GameOption, optionChooser: GameOption | null): boolean {
-
-        if (optionChooser === 'paper') {
-
-            return (optionHouse === 'rock');
-
-        } else if (optionChooser === 'rock') {
-
-            return (optionHouse === 'paper')
-
-        } else if (optionChooser === 'scissor') {
-
-            return (optionHouse === 'paper');
-
-        } else {
-            return false;
-        }
-    }
-
 
 }

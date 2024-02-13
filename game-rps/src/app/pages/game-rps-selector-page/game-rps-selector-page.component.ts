@@ -5,6 +5,7 @@ import { GameType } from '../../types/game-type.type';
 import { GameRpsSelectorComponent } from '../../components/game-rps-selector/game-rps-selector.component';
 import { GameRpsScoreComponent } from '../../components/game-rps-score/game-rps-score.component';
 import { GameOption } from '../../types/game-option.type';
+import { GameRpsService } from '../../services/game-rps.service';
 
 @Component({
     selector: 'game-rps-selector-page',
@@ -27,8 +28,8 @@ import { GameOption } from '../../types/game-option.type';
                 <game-rps-selector [mode]="gameConfig.options[0]" (eventClick)="onClickSelector($event)"></game-rps-selector>
             </section>
             <section class="selector-contain--between">
-                <game-rps-selector [mode]="gameConfig.options[1]" (eventClick)="onClickSelector"></game-rps-selector>
-                <game-rps-selector [mode]="gameConfig.options[2]" (eventClick)="onClickSelector"></game-rps-selector>
+                <game-rps-selector [mode]="gameConfig.options[1]" (eventClick)="onClickSelector($event)"></game-rps-selector>
+                <game-rps-selector [mode]="gameConfig.options[2]" (eventClick)="onClickSelector($event)"></game-rps-selector>
             </section>
         </aside>
     `,
@@ -39,29 +40,28 @@ export class GameRpsSelectorPageComponent implements OnInit {
 
     public gameConfig: {
         options: Array<GameOption>;
-        mode: GameType
+        mode: GameType | null
     };
 
     constructor(private _activeRoute: ActivatedRoute,
-                private _router: Router) {
+                private _router: Router,
+                private _gameService: GameRpsService) {
         this.gameConfig = {
             options: [],
-            mode:   (this._activeRoute.snapshot.paramMap.get('type') as GameType)
+            mode: null
         };
     }
 
     ngOnInit(): void {
-        if (this.gameConfig.mode === 'normal') {
-            this.gameConfig.options = ['paper', 'rock', 'scissor'];
-        } else {
-            this.gameConfig.options = [];
-        }
+        this._gameService.setGameType((this._activeRoute.snapshot.paramMap.get('type') as GameType));
+        this._gameService.setGameOptions();
+
+        this.gameConfig.mode = this._gameService.getGameType();
+        this.gameConfig.options = this._gameService.getOptions();
     }
 
     public onClickSelector(event: GameOption | null): void {
         this._router.navigate(['/result', event]);
     }
-
-
 
 }
