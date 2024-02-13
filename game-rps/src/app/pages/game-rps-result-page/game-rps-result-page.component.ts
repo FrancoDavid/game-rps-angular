@@ -15,18 +15,19 @@ import { GameRpsService } from '../../services/game-rps.service';
         GameResultTextPipe
     ],
     template: `
-        <section class="result-container"> 
-            <aside>
+
+            <aside class="aside-result">
                 <game-rps-selector [mode]="result.optionChooser"></game-rps-selector>
             </aside>
-            <aside>
+
+            <aside class="aside-middle">
                 <h2>{{result.isWinner | gameResultText}}</h2>
-                <button>Next Round</button>
+                <button class="btn-inline">Next Round</button>
             </aside>
-            <aside>
+
+            <aside class="aside-result">
                 <game-rps-selector [mode]="result.optionHouse"></game-rps-selector>
             </aside>
-        </section>
     `,
     styleUrl: './game-rps-result-page.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
