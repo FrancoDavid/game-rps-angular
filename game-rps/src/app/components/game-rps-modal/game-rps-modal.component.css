@@ -1,0 +1,34 @@
+.modal-game {
+  border: 1px solid blue;
+  border-radius: 8px;
+  background-color: white;
+  width: fit-content;
+  max-width: 640px;
+  min-width: 250px;
+
+  padding: 16px 16px;
+  
+
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+}
+
+.modal-game--title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 8px;
+  margin-bottom: 20px;
+  color: blue;
+}
+
+.modal-game--description {
+  font-size: .9rem;
+  width: 100%;
+  color: blue;
+  margin-bottom: 15px;
+}

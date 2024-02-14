@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { GameOption } from '../types/game-option.type';
 import { OPTIONS_NORMAL } from '../global/options.global';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, skip } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,8 @@ export class GameRpsService {
   };
 
   private _notificationResetGame: BehaviorSubject<void | null>;
+  private _notificationGameOver: BehaviorSubject<boolean>;
+  
 
   constructor(private _router: Router) {
     this._game = {
@@ -33,6 +35,7 @@ export class GameRpsService {
       maxRound: 3 
     };
     this._notificationResetGame = new BehaviorSubject<void | null>(null);
+    this._notificationGameOver = new BehaviorSubject<boolean>(false);
   }
 
   public setGameOptions(): void {
@@ -72,14 +75,15 @@ export class GameRpsService {
     return this._notificationResetGame.asObservable();
   }
 
-  public calculateChoicePlayerAuto(): GameOption {
+  public getNotificationOver$(): Observable<boolean> {
+    return this._notificationGameOver.asObservable().pipe(skip(1));
+  }
 
-    console.log('calculateChoicePlayerAuto', this._game);
+  public calculateChoicePlayerAuto(): GameOption {
 
     if (this._game.mode === 'normal') {
       return this._game.options[Math.floor(Math.random() * 3)];
     } else {
-      console.log('paper');
       return 'paper';
     }
   }
@@ -119,24 +123,16 @@ export class GameRpsService {
 
   public nextRound(stateWinner: number): void {
 
-    console.log('nextRound', stateWinner);
     this._game.round++;
 
     if (stateWinner === 1) {
-      console.log('use point ++');
       this._game.userPoints++;
 
     } else if (stateWinner === -1) {
-      console.log('auto point ++');
       this._game.autoPoints++;
     }
 
-    console.log(this._game.round);
-
-
     if (this._game.round === this._game.maxRound) {
-
-      console.log('TERMINO LOS TURNOS...');
 
       const isTie = (this._game.autoPoints === this._game.userPoints);
 
@@ -146,13 +142,9 @@ export class GameRpsService {
 
       } else {
 
-        if (this._game.autoPoints > this._game.userPoints) {
-          console.log("WIN PC");
-        } else {
-          console.log("WIN USER");
-        }
-
+        
         console.log('GAME OVER');
+        this._notificationGameOver.next((this._game.userPoints > this._game.autoPoints));
         this.resetGame();
       }
     } else {

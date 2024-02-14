@@ -43,3 +43,26 @@ h2 {
     border:  2px solid $color-primary;
     font-weight: bold;
 }
+
+.btn-inline--reverse {
+    background-color: $color-primary;
+    color: $color-secondary;
+    padding: 8px;
+    border: 1px solid $color-main;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.btn-inline--reverse:hover {
+    border:  2px solid $color-main;
+    font-weight: bold;
+}
+
+// :host {
+//     dialog::backdrop {
+//       @apply  bg-neutral-900/80 backdrop-blur-sm;
+//     }
+// }
+  
