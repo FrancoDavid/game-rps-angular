@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GameType } from '../../types/game-type.type';
+import { GameRpsService } from '../../services/game-rps.service';
 
 @Component({
     selector: 'game-rps-menu',
     standalone: true,
     imports: [
-        CommonModule,
-        RouterModule
+        CommonModule
     ],
     template: `
         <header>
@@ -26,29 +25,34 @@ import { GameType } from '../../types/game-type.type';
     styleUrl: './game-rps-menu.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GameRpsMenuComponent {
+export class GameRpsMenuComponent implements OnInit {
 
     public menu: {
         inGameProcess: boolean;
     }
 
-    constructor(private _router: Router) {
+    constructor(private _gameService: GameRpsService,
+                private _changeRef: ChangeDetectorRef) {
         this.menu = {
             inGameProcess: false
         };
     }
 
-    private _setInGameProcess(route: string): void {
-        this.menu.inGameProcess = (route === '/selection');
+    ngOnInit(): void {
+        this._gameService.getNotificationReset$()
+            .subscribe(() => {
+                this.menu.inGameProcess = false;
+                this._changeRef.markForCheck();
+            })
     }
 
     public onClickPlay(route: string, type: GameType): void {
-        this._router.navigate([route, type]);
-        this._setInGameProcess(route);
+        this.menu.inGameProcess = (route === '/selection');
+        this._gameService.playGame(type);
     }
 
     public onClickReset(): void {
-        this._router.navigate(['']);
-        this._setInGameProcess('');
+        this.menu.inGameProcess = false;
+        this._gameService.resetGame();
     }
 }

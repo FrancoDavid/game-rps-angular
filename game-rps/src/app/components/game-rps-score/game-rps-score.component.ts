@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { GameOption } from '../../types/game-option.type';
+import { GameRpsService } from '../../services/game-rps.service';
 
 @Component({
     selector: 'game-rps-score',
@@ -15,20 +16,38 @@ import { GameOption } from '../../types/game-option.type';
             </div>
 
             <div class="score-values">
-                <p>Score</p>
-                <p>1/3</p>
+                <p>Round: {{score.round}} </p>
+                <p>points</p>
+                <p>{{score.userPoints}}-{{score.autoPoints}}</p>
             </div>
         </section>
     `,
     styleUrl: './game-rps-score.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GameRpsScoreComponent {
-    
- @Input() options: Array<GameOption>;
+export class GameRpsScoreComponent implements OnInit {
 
- constructor() {
-    this.options = [];
- }
+    @Input() options: Array<GameOption>;
+
+    public score: {
+        userPoints: number,
+        autoPoints: number
+        round: number
+    };
+
+    constructor(private _gameService: GameRpsService) {
+        this.options = [];
+        this.score = {
+            userPoints: 0,
+            autoPoints: 0,
+            round: 0
+        };
+    }
+
+    ngOnInit(): void {
+        this.score.autoPoints = this._gameService.getAutoPoint();
+        this.score.userPoints = this._gameService.getUserPoint();
+        this.score.round = this._gameService.getRound();
+    }
 
 }

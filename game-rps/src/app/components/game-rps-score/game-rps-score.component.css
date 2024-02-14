@@ -36,6 +36,7 @@
 
 .score-values p:first-child {
   font-size: 1rem;
+  margin-bottom: 5px;
 }
 
 .score-values p:last-child {
