@@ -31,6 +31,21 @@ import { GameRpsService } from '../../services/game-rps.service';
                 <game-rps-selector [mode]="gameConfig.options[1]" (eventClick)="onClickSelector($event)"></game-rps-selector>
                 <game-rps-selector [mode]="gameConfig.options[2]" (eventClick)="onClickSelector($event)"></game-rps-selector>
             </section>
+            
+        </aside>
+
+        <aside class="game-config-container" *ngIf="gameConfig.mode === 'sheldon'">
+            <section class="selector-contain--center">
+                <game-rps-selector [mode]="gameConfig.options[0]" (eventClick)="onClickSelector($event)"></game-rps-selector>
+            </section>
+            <section class="selector-contain--between">
+                <game-rps-selector [mode]="gameConfig.options[1]" (eventClick)="onClickSelector($event)"></game-rps-selector>
+                <game-rps-selector [mode]="gameConfig.options[2]" (eventClick)="onClickSelector($event)"></game-rps-selector>
+            </section>
+            <section class="selector-contain--between">
+                <game-rps-selector [mode]="gameConfig.options[3]" (eventClick)="onClickSelector($event)"></game-rps-selector>
+                <game-rps-selector [mode]="gameConfig.options[4]" (eventClick)="onClickSelector($event)"></game-rps-selector>
+            </section>
         </aside>
     `,
     styleUrl: './game-rps-selector-page.component.css',

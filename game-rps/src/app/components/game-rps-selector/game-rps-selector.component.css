@@ -40,6 +40,23 @@
 }
 
 
+.btn-selector--green {
+  border-color: green;
+}
+
+.btn-selector--green:hover {
+  border-color: greenyellow;
+}
+
+.btn-selector--purple {
+  border-color: purple;
+}
+
+.btn-selector--purple:hover {
+  border-color: palevioletred;
+}
+
+
 
 
 

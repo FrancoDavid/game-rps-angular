@@ -46,7 +46,7 @@ export class GameRpsSelectorComponent implements OnInit {
         };
     }
 
-    private _setStyle(mode: 'rock' | 'paper' | 'scissor' | null): string {
+    private _setStyle(mode: GameOption | null): string {
         switch (mode) {
             case 'rock':
                 return 'btn-selector--red';
@@ -54,12 +54,16 @@ export class GameRpsSelectorComponent implements OnInit {
                 return 'btn-selector--blue';
             case 'scissor':
                 return 'btn-selector--yellow';
+            case 'lizard': 
+                return 'btn-selector--green';
+            case 'spock':
+                return 'btn-selector--purple';
             default:
                 return '';
         }
     }
 
-    private _setSrc(mode: 'rock' | 'paper' | 'scissor' | null): string {
+    private _setSrc(mode: GameOption | null): string {
         switch (mode) {
             case 'rock':
                 return 'assets/svg/stone-rock-svgrepo-com.svg';
@@ -67,6 +71,10 @@ export class GameRpsSelectorComponent implements OnInit {
                 return 'assets/svg/paper-svgrepo-com.svg';
             case 'scissor':
                 return 'assets/svg/scissor-svgrepo-com.svg';
+            case 'lizard':
+                return 'assets/svg/lizard-svgrepo-com.svg';
+            case 'spock':
+                return 'assets/svg/spock-hand-svgrepo-com.svg';
             default:
                 return '';
         }

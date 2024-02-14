@@ -1,7 +1,7 @@
 import { GameType } from './../types/game-type.type';
 import { Injectable } from '@angular/core';
 import { GameOption } from '../types/game-option.type';
-import { OPTIONS_NORMAL } from '../global/options.global';
+import { OPTIONS_NORMAL, OPTIONS_SHELDON } from '../global/options.global';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, skip } from 'rxjs';
 
@@ -43,7 +43,7 @@ export class GameRpsService {
       this._game.options = [...OPTIONS_NORMAL];
 
     } else {
-      this._game.options = [];
+      this._game.options = [...OPTIONS_SHELDON];
     }
   }
 
@@ -84,7 +84,7 @@ export class GameRpsService {
     if (this._game.mode === 'normal') {
       return this._game.options[Math.floor(Math.random() * 3)];
     } else {
-      return 'paper';
+      return this._game.options[Math.floor(Math.random() * 5)];
     }
   }
 
@@ -117,7 +117,38 @@ export class GameRpsService {
 
     } else {
       
-      return -1
+      if (optionPlayer === optionPlayerAuto) {
+        
+        return 0;
+      
+      } else {
+
+        if (optionPlayer === 'paper') {
+
+          return (optionPlayerAuto === 'rock') ? 1 : -1;
+    
+        } else if (optionPlayer === 'rock') {
+    
+          return (optionPlayerAuto === 'paper') ? 1 : -1;
+    
+        } else if (optionPlayer === 'scissor') {
+    
+          return (optionPlayerAuto === 'paper') ? 1 : -1;
+    
+        } else if (optionPlayer === 'lizard') {
+    
+          return (optionPlayerAuto === 'spock') ? 1 : -1;
+    
+        } else if (optionPlayer === 'spock') {
+    
+          return (optionPlayerAuto === 'spock') ? 1 : -1;
+    
+        } else {
+
+          return 1;
+        }
+
+      }
     }
   }
 

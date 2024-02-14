@@ -1,1 +1,1 @@
-export type GameOption = 'paper' | 'rock' | 'scissor';
+export type GameOption = 'paper' | 'rock' | 'scissor' | 'lizard' | 'spock';
