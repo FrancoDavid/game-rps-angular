@@ -5,6 +5,21 @@ import { OPTIONS_NORMAL, OPTIONS_SHELDON } from '../global/options.global';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, skip } from 'rxjs';
 
+
+ /**
+  * 1. Scissors cuts Paper
+  * 2. Paper covers Rock
+  * 3. Rock crushes Lizard
+  * 4. Lizard poisons Spock
+  * 5. Spock smashes Scissors
+  * 6. Scissors decapitates Lizard
+  * 7. Lizard eats Paper
+  * 8. Paper disproves Spock
+  * 9. Spock vaporizes Rock
+  * 10. Rock crushes Scissors
+  *
+*/
+
 @Injectable({
   providedIn: 'root'
 })
@@ -89,65 +104,36 @@ export class GameRpsService {
   }
 
   public verifyGameWinner(optionPlayer: GameOption | null, optionPlayerAuto: GameOption): number {
-    if (this._game.mode === 'normal') {
 
-      if (optionPlayer === optionPlayerAuto) {
+    if (optionPlayer === optionPlayerAuto) {
         
-        return 0;
-      
-      } else {
-        
-        if (optionPlayer === 'paper') {
-
-          return (optionPlayerAuto === 'rock') ? 1 : -1;
+      return 0;
     
-        } else if (optionPlayer === 'rock') {
-    
-          return (optionPlayerAuto === 'paper') ? 1 : -1;
-    
-        } else if (optionPlayer === 'scissor') {
-    
-          return (optionPlayerAuto === 'paper') ? 1 : -1;
-    
-        } else {
-
-          return 1;
-        }
-      }
-
     } else {
-      
-      if (optionPlayer === optionPlayerAuto) {
+
+      if (optionPlayer === 'scissor') {
         
-        return 0;
-      
+        return (optionPlayerAuto === 'rock' || optionPlayerAuto === 'spock') ? -1 : 1;
+
+      } else if (optionPlayer === 'paper') {
+
+        return (optionPlayerAuto === 'scissor' || optionPlayerAuto === 'lizard') ? -1 : 1;
+
+      } else if (optionPlayer === 'rock') {
+
+        return (optionPlayerAuto === 'paper' || optionPlayerAuto === 'spock') ? -1 : 1;
+        
+      } else if (optionPlayer === 'lizard') {
+        
+        return (optionPlayerAuto === 'rock' || optionPlayerAuto === 'scissor') ? -1 : 1;
+
+      } else if (optionPlayer === 'spock') {
+        
+        return (optionPlayerAuto === 'lizard' || optionPlayerAuto === 'paper') ? -1 : 1;
+
       } else {
 
-        if (optionPlayer === 'paper') {
-
-          return (optionPlayerAuto === 'rock') ? 1 : -1;
-    
-        } else if (optionPlayer === 'rock') {
-    
-          return (optionPlayerAuto === 'paper') ? 1 : -1;
-    
-        } else if (optionPlayer === 'scissor') {
-    
-          return (optionPlayerAuto === 'paper') ? 1 : -1;
-    
-        } else if (optionPlayer === 'lizard') {
-    
-          return (optionPlayerAuto === 'spock') ? 1 : -1;
-    
-        } else if (optionPlayer === 'spock') {
-    
-          return (optionPlayerAuto === 'spock') ? 1 : -1;
-    
-        } else {
-
-          return 1;
-        }
-
+        return 1;
       }
     }
   }
@@ -172,14 +158,10 @@ export class GameRpsService {
         this._router.navigate(['/selection', this._game.mode]);
 
       } else {
-
-        
-        console.log('GAME OVER');
         this._notificationGameOver.next((this._game.userPoints > this._game.autoPoints));
         this.resetGame();
       }
     } else {
-      console.log('next round..');
       this._router.navigate(['/selection', this._game.mode]);
     }
 
