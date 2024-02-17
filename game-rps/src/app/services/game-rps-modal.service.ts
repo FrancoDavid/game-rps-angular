@@ -21,7 +21,7 @@ export class GameRpsModalService {
   }
 
   public openModalLose(): void {
-    this._showModalBehavior.next({isOpen: true, title: 'You are Loser!', description: 'The PC Won!. Congratulations, thanks to playing'});
+    this._showModalBehavior.next({isOpen: true, title: 'You are Loser!', description: 'The PC Won!, thanks to playing'});
   }
 
 

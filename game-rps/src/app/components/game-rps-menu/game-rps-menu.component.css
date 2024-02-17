@@ -4,6 +4,10 @@ header {
   text-align: center;
 }
 
+header h1 {
+  margin-bottom: 24px;
+}
+
 section {
   display: flex;
   justify-content: center;

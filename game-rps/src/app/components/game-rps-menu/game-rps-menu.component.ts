@@ -18,7 +18,7 @@ import { GameRpsService } from '../../services/game-rps.service';
             </section>
 
             <section *ngIf="menu.inGameProcess">
-                <button class="btn-inline" (click)="onClickReset()">Reset</button>
+                <button class="btn-inline" (click)="onClickReset()">Quit</button>
             </section>
         </header>
     `,

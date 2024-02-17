@@ -11,11 +11,8 @@ import { GameRpsModalService } from '../../services/game-rps-modal.service';
         <section>
             <h2>Ready to play?</h2>
         </section>
-
-
-        <game-rps-modal dialogTitle="Greetings, one and all!">
-           <h1>SOY EL CONTENT</h1>
-        </game-rps-modal>
+        
+        <game-rps-modal></game-rps-modal>
     `,
     styleUrl: './game-rps-start-page.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

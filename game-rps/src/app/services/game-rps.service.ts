@@ -86,6 +86,10 @@ export class GameRpsService {
     return this._game.autoPoints;
   }
 
+  public getMaxRound(): number {
+    return this._game.maxRound;
+  }
+
   public getNotificationReset$(): Observable<void | null> {
     return this._notificationResetGame.asObservable();
   }

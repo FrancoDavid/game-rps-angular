@@ -16,7 +16,7 @@ import { GameRpsService } from '../../services/game-rps.service';
             </div>
 
             <div class="score-values">
-                <p>Round: {{score.round}} </p>
+                <p>Round: {{score.round}} / {{score.maxRound}}</p>
                 <p>points</p>
                 <p>{{score.userPoints}}-{{score.autoPoints}}</p>
             </div>
@@ -32,7 +32,8 @@ export class GameRpsScoreComponent implements OnInit {
     public score: {
         userPoints: number,
         autoPoints: number
-        round: number
+        round: number,
+        maxRound: number
     };
 
     constructor(private _gameService: GameRpsService) {
@@ -40,7 +41,8 @@ export class GameRpsScoreComponent implements OnInit {
         this.score = {
             userPoints: 0,
             autoPoints: 0,
-            round: 0
+            round: 0,
+            maxRound: 0
         };
     }
 
@@ -48,6 +50,7 @@ export class GameRpsScoreComponent implements OnInit {
         this.score.autoPoints = this._gameService.getAutoPoint();
         this.score.userPoints = this._gameService.getUserPoint();
         this.score.round = this._gameService.getRound();
+        this.score.maxRound = this._gameService.getMaxRound();
     }
 
 }

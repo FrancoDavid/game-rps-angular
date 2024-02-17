@@ -13,7 +13,10 @@ $color-ternary: rgb(58, 56, 56);
 }
 
 body {
-    background-color: $color-main;
+    background: linear-gradient(to bottom,#0b0bc1d4, #0c0f5b );
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    
     font-family: 'Ubuntu', sans-serif;
     font-size: 62.5%;
 }

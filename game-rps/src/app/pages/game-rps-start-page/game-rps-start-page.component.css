@@ -1,3 +1,7 @@
 section {
   text-align: center;
 }
+
+section h2 {
+  margin-top: 24px;
+}
