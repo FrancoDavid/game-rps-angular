@@ -16,44 +16,43 @@
 }
 
 .btn-selector--yellow {
-  border-color: yellow;
+  border-color: #E7A721;
 }
 
 .btn-selector--yellow:hover {
-  border-color: yellowgreen;
+  border-color: #C76D17;
 }
 
 .btn-selector--blue {
-  border-color: blue;
+  border-color: #536AF5;
 }
 
 .btn-selector--blue:hover {
-  border-color: aqua;
+  border-color: #2946C1;
 }
 
 .btn-selector--red {
-  border-color: red;
+  border-color: #DF3957;
 }
 
 .btn-selector--red:hover {
-  border-color: rebeccapurple;
+  border-color: #9C1833;
 }
 
-
 .btn-selector--green {
-  border-color: green;
+  border-color: #4CBBD1;
 }
 
 .btn-selector--green:hover {
-  border-color: greenyellow;
+  border-color: #368FAD;
 }
 
 .btn-selector--purple {
-  border-color: purple;
+  border-color: #8955E0;
 }
 
 .btn-selector--purple:hover {
-  border-color: palevioletred;
+  border-color: #6035AE;
 }
 
 

@@ -42,8 +42,7 @@ export class GameRpsResultPageComponent implements OnInit {
 
 
     constructor(private _activeRouter: ActivatedRoute,
-                private _gameService: GameRpsService,
-                private _router: Router) {
+                private _gameService: GameRpsService) {
         this.result = {
             optionChooser: null,
             optionHouse: null,
@@ -53,7 +52,6 @@ export class GameRpsResultPageComponent implements OnInit {
  
 
     ngOnInit(): void {
-
         const optionChooser = this._activeRouter.snapshot.paramMap.get('option') as GameOption | null;
         const optionHouse = this._gameService.calculateChoicePlayerAuto();
 
@@ -62,8 +60,6 @@ export class GameRpsResultPageComponent implements OnInit {
             optionHouse,
             isWinner: this._gameService.verifyGameWinner(optionChooser, optionHouse)
         };
-
-        console.log(this.result);
     }
 
     public onClickNextTurn(): void {

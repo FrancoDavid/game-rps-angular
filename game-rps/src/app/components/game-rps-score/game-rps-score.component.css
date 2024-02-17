@@ -1,13 +1,12 @@
 .score-container {
   background-color: transparent;
-  border: 1px solid white;
-  border-radius: 5px;
-  /* padding: 8px; */
+  border: 2px solid #566580;
+  border-radius: 10px;
 
   display: flex;
   justify-content: space-between;
 
-  margin: 16px auto;
+  margin: 15px auto 45px auto;
   max-width: 290px;
 
   color: white;
@@ -38,7 +37,7 @@
   padding: 8px 16px;
   margin:8px 16px;
 
-  color: #374fb9;
+  color: #5368BA;
 }
 
 .score-values p:first-child {
@@ -49,4 +48,17 @@
 .score-values p:last-child {
   font-size: 2rem;
   font-weight: 500;
+  color: #5A5871;
+}
+
+@media (min-width: 576px) {
+  .score-container {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 992px) {
+  .score-container {
+    max-width: 600px;
+  }
 }

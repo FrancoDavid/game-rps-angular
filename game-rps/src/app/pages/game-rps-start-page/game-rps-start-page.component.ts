@@ -30,7 +30,6 @@ export class GameRpsStartPageComponent implements OnInit {
     ngOnInit(): void {
         this._gameService.getNotificationOver$()
             .subscribe((isWinner) => {
-                console.log('isWinner', isWinner);
                 if (isWinner) {
                     this._gameModalService.openModalWin();
                 } else {
