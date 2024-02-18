@@ -32,7 +32,8 @@ export class GameRpsService {
     winner: number,
     userPoints: number,
     autoPoints: number,
-    maxRound: number
+    maxRound: number,
+    isGaming: boolean
   };
 
   private _notificationResetGame: BehaviorSubject<void | null>;
@@ -47,7 +48,8 @@ export class GameRpsService {
       winner: 0,
       userPoints: 0,
       autoPoints: 0,
-      maxRound: 3 
+      maxRound: 3,
+      isGaming: false
     };
     this._notificationResetGame = new BehaviorSubject<void | null>(null);
     this._notificationGameOver = new BehaviorSubject<boolean>(false);
@@ -88,6 +90,10 @@ export class GameRpsService {
 
   public getMaxRound(): number {
     return this._game.maxRound;
+  }
+
+  public getIsGaming(): boolean {
+    return this._game.isGaming;
   }
 
   public getNotificationReset$(): Observable<void | null> {
@@ -179,7 +185,8 @@ export class GameRpsService {
       winner: 0,
       userPoints: 0,
       autoPoints: 0,
-      maxRound: 3 
+      maxRound: 3,
+      isGaming: false
     };
 
     this._router.navigate(['']);
@@ -187,6 +194,7 @@ export class GameRpsService {
   }
 
   public playGame(type: GameType): void {
+    this._game.isGaming = true;
     this._router.navigate(['/selection', type]);
   }
 }
