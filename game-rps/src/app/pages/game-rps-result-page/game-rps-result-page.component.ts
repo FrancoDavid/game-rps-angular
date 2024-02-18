@@ -15,8 +15,21 @@ import { GameRpsService } from '../../services/game-rps.service';
         GameResultTextPipe
     ],
     template: `
+        <section class="result-picked--container">
+            <aside>
+                <game-rps-selector [mode]="result.optionChooser"></game-rps-selector>
+                <h4>You picked</h4>
+            </aside>
+            <aside>
+                <game-rps-selector [mode]="result.optionHouse"></game-rps-selector>
+                <h4>The House picked</h4>
+            </aside>
+        </section>
 
-            <aside class="aside-result">
+
+
+
+            <!-- <aside class="aside-result">
                 <game-rps-selector [mode]="result.optionChooser"></game-rps-selector>
             </aside>
 
@@ -27,7 +40,7 @@ import { GameRpsService } from '../../services/game-rps.service';
 
             <aside class="aside-result">
                 <game-rps-selector [mode]="result.optionHouse"></game-rps-selector>
-            </aside>
+            </aside> -->
     `,
     styleUrl: './game-rps-result-page.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

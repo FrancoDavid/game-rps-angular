@@ -14,3 +14,14 @@
 
   gap: 8px;
 }
+
+
+.result-picked--container {
+  display: flex;
+  justify-content: center;
+  gap: 15px
+}
+
+.result-picked--container aside {
+  text-align: center;
+}
