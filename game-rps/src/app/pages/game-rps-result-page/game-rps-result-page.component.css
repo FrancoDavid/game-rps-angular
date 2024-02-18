@@ -1,21 +1,3 @@
-.aside-result {
-  display: flex;
-  justify-content: center;
-  margin: 16px auto;
-}
-
-.aside-middle {
-  display: flex;
-  justify-content: center;
-
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-
-  gap: 8px;
-}
-
-
 .result-picked--container {
   display: flex;
   justify-content: center;
@@ -24,4 +6,48 @@
 
 .result-picked--container aside {
   text-align: center;
+}
+
+.result-picked--container h3 {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+
+  margin: 16px auto;
+}
+
+.result-description--container {
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.result-description--container h2 {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 500;
+  margin: 10px auto 8px auto;
+}
+
+.result-action--container {
+  text-align: center;
+  color: white;
+  font-size: .9rem;
+  margin: 10px auto;
+}
+
+@media (min-width: 768px) {
+  .result-picked--container {
+    gap: 110px;
+  }
+}
+
+@media (min-width: 992px) {
+  .result-picked--container {
+    gap: 200px;
+  }
 }

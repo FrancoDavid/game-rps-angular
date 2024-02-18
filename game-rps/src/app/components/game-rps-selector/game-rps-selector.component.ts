@@ -11,10 +11,23 @@ import { GameOption } from '../../types/game-option.type';
     template: `
         <button
             class="btn-selector"
-            [ngClass]="button?.style"
+            [ngClass]="{
+                'btn-selector--red': mode === 'rock',
+                'btn-selector--blue': mode === 'paper',
+                'btn-selector--yellow': mode === 'scissor',
+                'btn-selector--green': mode === 'lizard',
+                'btn-selector--purple': mode === 'spock',
+
+                'btn-selector--shadow': picked
+            }"
             (click)="onClick()">
             <img
-                [src]="button?.src"
+                [src]="mode === 'rock' ? 'assets/svg/stone-rock-svgrepo-com.svg' :
+                        mode === 'paper' ? 'assets/svg/paper-svgrepo-com.svg' :
+                        mode === 'scissor' ? 'assets/svg/scissor-svgrepo-com.svg' :
+                        mode === 'lizard' ? 'assets/svg/lizard-svgrepo-com.svg' :
+                        mode === 'spock' ? 'assets/svg/spock-hand-svgrepo-com.svg' :
+                        ''"
                 [alt]="mode">
         </button>
     `,
@@ -24,60 +37,17 @@ import { GameOption } from '../../types/game-option.type';
 export class GameRpsSelectorComponent implements OnInit {
 
     @Input() mode: GameOption | null;
+    @Input() picked: boolean;
     @Output() eventClick: EventEmitter<GameOption | null>;
-
-    public button: {
-        style: string,
-        src: string
-    } | null;
 
     constructor() {
         this.mode = null
-        this.button = null;
+        this.picked = false;
 
         this.eventClick = new EventEmitter();
     }
 
     ngOnInit(): void {
-
-        this.button = {
-            style: this._setStyle(this.mode),
-            src: this._setSrc(this.mode),
-        };
-    }
-
-    private _setStyle(mode: GameOption | null): string {
-        switch (mode) {
-            case 'rock':
-                return 'btn-selector--red';
-            case 'paper':
-                return 'btn-selector--blue';
-            case 'scissor':
-                return 'btn-selector--yellow';
-            case 'lizard': 
-                return 'btn-selector--green';
-            case 'spock':
-                return 'btn-selector--purple';
-            default:
-                return '';
-        }
-    }
-
-    private _setSrc(mode: GameOption | null): string {
-        switch (mode) {
-            case 'rock':
-                return 'assets/svg/stone-rock-svgrepo-com.svg';
-            case 'paper':
-                return 'assets/svg/paper-svgrepo-com.svg';
-            case 'scissor':
-                return 'assets/svg/scissor-svgrepo-com.svg';
-            case 'lizard':
-                return 'assets/svg/lizard-svgrepo-com.svg';
-            case 'spock':
-                return 'assets/svg/spock-hand-svgrepo-com.svg';
-            default:
-                return '';
-        }
     }
 
     public onClick()  {

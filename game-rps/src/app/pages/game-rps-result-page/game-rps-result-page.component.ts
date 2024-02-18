@@ -1,8 +1,9 @@
+import { GameResultActionPipe } from './../../pipes/game-result-action.pipe';
 import { GameResultTextPipe } from './../../pipes/game-result-text.pipe';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { GameRpsSelectorComponent } from '../../components/game-rps-selector/game-rps-selector.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { GameOption } from '../../types/game-option.type';
 import { GameRpsService } from '../../services/game-rps.service';
 
@@ -12,35 +13,29 @@ import { GameRpsService } from '../../services/game-rps.service';
     imports: [
         CommonModule,
         GameRpsSelectorComponent,
-        GameResultTextPipe
+        GameResultTextPipe,
+        GameResultActionPipe
     ],
     template: `
+        <section class="result-action--container">
+            <h3>{{result.optionChooser | gameResultAction: result.optionHouse}}</h3>
+        </section>
+
         <section class="result-picked--container">
             <aside>
-                <game-rps-selector [mode]="result.optionChooser"></game-rps-selector>
-                <h4>You picked</h4>
+                <game-rps-selector [mode]="result.optionChooser" [picked]="true"></game-rps-selector>
+                <h3>You picked</h3>
             </aside>
             <aside>
                 <game-rps-selector [mode]="result.optionHouse"></game-rps-selector>
-                <h4>The House picked</h4>
+                <h3>The House picked</h3>
             </aside>
         </section>
 
-
-
-
-            <!-- <aside class="aside-result">
-                <game-rps-selector [mode]="result.optionChooser"></game-rps-selector>
-            </aside>
-
-            <aside class="aside-middle">
-                <h2>{{result.isWinner | gameResultText}}</h2>
-                <button class="btn-inline" (click)="onClickNextTurn()">Next Round</button>
-            </aside>
-
-            <aside class="aside-result">
-                <game-rps-selector [mode]="result.optionHouse"></game-rps-selector>
-            </aside> -->
+        <section class="result-description--container">
+            <h2>{{result.isWinner | gameResultText}}</h2>
+            <button class="btn-inline--reverse" (click)="onClickNextTurn()">Next Round</button>
+        </section>
     `,
     styleUrl: './game-rps-result-page.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
