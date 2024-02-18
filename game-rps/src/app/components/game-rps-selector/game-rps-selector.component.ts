@@ -32,7 +32,7 @@ import { GameOption } from '../../types/game-option.type';
         </button>
     `,
     styleUrl: './game-rps-selector.component.css',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameRpsSelectorComponent implements OnInit {
 

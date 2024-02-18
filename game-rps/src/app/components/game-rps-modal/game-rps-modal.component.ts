@@ -12,8 +12,9 @@ import { GameRpsModalService } from '../../services/game-rps-modal.service';
         <dialog #appDialog class="modal-game">
             <h2 class="modal-game--title">{{modal.title}}</h2>
             <p class="modal-game--description">{{modal.description}}</p>
-
-            <button class="btn-inline--reverse" (click)="onClose()">Close</button>
+            <img src="assets/svg/stars-shine-svgrepo-com.svg">
+            <br/>
+            <button class="btn-blue" (click)="onClose()">Close</button>
         </dialog>
     `,
     styleUrl: './game-rps-modal.component.css',
