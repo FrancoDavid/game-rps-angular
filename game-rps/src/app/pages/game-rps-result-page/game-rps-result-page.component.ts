@@ -6,6 +6,7 @@ import { GameRpsSelectorComponent } from '../../components/game-rps-selector/gam
 import { ActivatedRoute } from '@angular/router';
 import { GameOption } from '../../types/game-option.type';
 import { GameRpsService } from '../../services/game-rps.service';
+import { fadeDown, fadeIn } from '../../global/animations.global';
 
 @Component({
     selector: 'game-rps-result-page',
@@ -17,11 +18,11 @@ import { GameRpsService } from '../../services/game-rps.service';
         GameResultActionPipe
     ],
     template: `
-        <section class="result-action--container">
+        <section [@fadeInDown] class="result-action--container">
             <h3>{{result.optionChooser | gameResultAction: result.optionHouse}}</h3>
         </section>
 
-        <section class="result-picked--container">
+        <section [@fadeIn] class="result-picked--container">
             <aside>
                 <game-rps-selector [mode]="result.optionChooser" [picked]="true"></game-rps-selector>
                 <h3>You picked</h3>
@@ -32,13 +33,14 @@ import { GameRpsService } from '../../services/game-rps.service';
             </aside>
         </section>
 
-        <section class="result-description--container">
+        <section [@fadeInDown] class="result-description--container">
             <h2>{{result.isWinner | gameResultText}}</h2>
             <button class="btn-inline--reverse" (click)="onClickNextTurn()">Next Round</button>
         </section>
     `,
     styleUrl: './game-rps-result-page.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [fadeIn, fadeDown]
 })
 export class GameRpsResultPageComponent implements OnInit {
 
