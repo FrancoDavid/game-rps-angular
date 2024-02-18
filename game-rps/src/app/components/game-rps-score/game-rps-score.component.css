@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
 
-  margin: 15px auto 45px auto;
+  margin: 15px auto;
   max-width: 290px;
 
   color: white;
@@ -15,7 +15,7 @@
 .score-options {
   display: flex;
   flex-direction: column;
-  padding: 8px 16px;
+  padding: 8px 24px;
   justify-content: center;
 }
 

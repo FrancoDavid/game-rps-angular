@@ -1,6 +1,6 @@
 .btn-selector {
 
-  background-color: white;
+  background-color: #E2E2E4;
   color: black;
   border: 15px solid;
 
@@ -12,7 +12,7 @@
 }
 
 .btn-selector:hover {
-  background-color: rgb(218, 213, 213);
+  background-color: #B9BED8;
 }
 
 .btn-selector--yellow {
