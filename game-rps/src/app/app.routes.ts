@@ -5,7 +5,7 @@ import { GameRpsResultPageComponent } from './pages/game-rps-result-page/game-rp
 import { refreshGuard } from './guards/refresh.guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/', pathMatch: 'full' },
+    { path: '', redirectTo: '', pathMatch: 'full' },
     { path: '', component: GameRpsStartPageComponent },
     { path: 'selection/:type', component: GameRpsSelectorPageComponent, canActivate: [refreshGuard] },
     { path: 'result/:option', component: GameRpsResultPageComponent, canActivate: [refreshGuard] },

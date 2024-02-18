@@ -52,10 +52,6 @@ export class GameRpsMenuComponent implements OnInit {
     }
 
     public onClickReset(): void {
-
-        console.log("onClickReset");
-
-        this.menu.inGameProcess = false;
         this._gameService.resetGame();
     }
 }
